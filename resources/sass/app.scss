@@ -1,0 +1,27 @@
+// Fonts
+@import url('https://fonts.bunny.net/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
+
+
+.form{
+    margin: 0 auto;
+
+    label{
+        margin-top: 15px;
+    }
+}
+
+.btn{
+    background-color: blue;
+    color: white;
+
+    &:hover{
+        background-color: #0a53be;
+        color: white;
+    }
+}
