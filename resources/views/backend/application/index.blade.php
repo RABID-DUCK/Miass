@@ -2,6 +2,11 @@
 
 @section('content')
     @if(isset($apps))
+        <div class="filter d-flex">
+            <span onclick="sortApp('dateDown')">По дате убыв.</span>
+            <span onclick="sortApp('dateUp')">По дате возр.</span>
+            <span onclick="sortApp('status')">По статусу</span>
+        </div>
     <table class="table">
         <thead>
         <tr>
@@ -11,9 +16,10 @@
             <th scope="col">Статус</th>
             <th scope="col">Сообщение</th>
             <th scope="col">Ответ пользователю</th>
+            <th scope="col">Создана</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody id="applications">
         @foreach($apps as $app)
         <tr>
             <th scope="row">{{$app->id}}</th>
@@ -22,6 +28,7 @@
             <td>{{$app->status}}</td>
             <td>{{$app->message}}</td>
             <td>{{$app->comment}}</td>
+            <td>{{$app->created_at}}</td>
         </tr>
         @endforeach
         </tbody>

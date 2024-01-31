@@ -27,7 +27,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'backend'], function (){
-   Route::get('/applications', [\App\Http\Controllers\Backend\ApplicationConrtoller::class, 'index']);
+   Route::get('/applications', [\App\Http\Controllers\Backend\ApplicationConrtoller::class, 'index'])->name('app.index');
    Route::get('/application/{id}', [\App\Http\Controllers\Backend\ApplicationConrtoller::class, 'show'])->name('app.show');
-   Route::get('/application_sent', [\App\Http\Controllers\Backend\ApplicationConrtoller::class, 'sent'])->name('app.sent');
+   Route::patch('/application_sent', [\App\Http\Controllers\Backend\ApplicationConrtoller::class, 'sent'])->name('app.sent');
 });

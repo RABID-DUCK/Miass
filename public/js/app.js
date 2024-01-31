@@ -38,6 +38,28 @@ window.sendApplication = function () {
     alert('Произошла ошибка на сервере, попробуйте позже!');
   });
 };
+window.sortApp = function (action) {
+  fetch('/api/filter-app', {
+    method: 'post',
+    headers: {
+      'Accept': 'application/json',
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      action: action
+    })
+  }).then(function (response) {
+    return response.json();
+  }).then(function (data) {
+    var main = document.getElementById('applications');
+    main.innerHTML = '';
+    data.apps.forEach(function (item) {
+      main.insertAdjacentHTML('beforeend', "\n                <tr>\n                    <th scope=\"row\">".concat(item.id, "</th>\n                    <td>").concat(item.name, "</td>\n                    <td><a href=\"/backend/application/").concat(item.id, "\">").concat(item.email, "</a></td>\n                    <td>").concat(item.status, "</td>\n                    <td>").concat(item.message, "</td>\n                    <td>").concat(item.comment, "</td>\n                    <td>").concat(item.created_at, "</td>\n                </tr>\n            "));
+    });
+  })["catch"](function (err) {
+    console.log(err);
+  });
+};
 
 /***/ }),
 

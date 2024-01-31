@@ -2,6 +2,8 @@
 
 @section('content')
     <form class="form w-75">
+        @csrf
+
         <div class="form-group">
             <label for="name_user">Ваше имя</label>
             <input type="text" class="form-control" id="name_user" name="name" required>

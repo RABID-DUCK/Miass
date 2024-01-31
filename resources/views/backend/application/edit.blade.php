@@ -2,8 +2,9 @@
 
 @section('content')
     @if(isset($app))
-        <form class="form w-75">
+        <form class="form w-75" action="{{route('app.sent')}}" method="POST">
             @csrf
+            @method('patch')
 
             <input type="hidden" value="{{$app->id}}" name="id_application">
             <div class="form-group">
@@ -17,20 +18,24 @@
             <div class="form-group">
                 <label for="email">Статус</label>
                 <select name="status" class="form-control">
-                    <option value="0">Not selected</option>
                     <option value="Active">Active</option>
                     <option value="Resolved">Resolved</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="message">Сообщение</label>
-                <textarea class="form-control" id="message" rows="3" name="message" value="{{$app->message}}" disabled></textarea>
+                <textarea class="form-control" id="message" rows="3" name="message" disabled>{{$app->message}}</textarea>
             </div>
 
             <div class="form-group">
                 <label for="message">Комментарий</label>
-                <textarea class="form-control" id="comment" rows="3" name="comment" required></textarea>
+                <textarea class="form-control" placeholder="Введите ответ пользователю" id="comment" rows="3" name="comment" required>{{$app->comment ?? ''}}</textarea>
+                    @if($errors->any())
+                        <b class="text-danger">{{$errors->first()}}</b>
+                    @endif
             </div>
+
+            <input class="btn mt-4" type="submit" value="Ответить">
         </form>
     @endif
 @endsection

@@ -32,3 +32,38 @@ window.sendApplication = function(){
             alert('Произошла ошибка на сервере, попробуйте позже!')
         })
 }
+
+window.sortApp = function (action){
+    fetch('/api/filter-app', {
+        method: 'post',
+        headers: {
+            'Accept': 'application/json',
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            action: action,
+        })
+    })
+        .then(response => response.json())
+        .then(data => {
+            let main = document.getElementById('applications');
+            main.innerHTML = '';
+            data.apps.forEach(item => {
+                main.insertAdjacentHTML('beforeend', `
+                <tr>
+                    <th scope="row">${item.id}</th>
+                    <td>${item.name}</td>
+                    <td><a href="/backend/application/${item.id}">${item.email}</a></td>
+                    <td>${item.status}</td>
+                    <td>${item.message}</td>
+                    <td>${item.comment}</td>
+                    <td>${item.created_at}</td>
+                </tr>
+            `)
+            })
+
+        })
+        .catch(err => {
+            console.log(err);
+        })
+}

@@ -19,3 +19,4 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 });
 
 Route::post('/create-application', [\App\Http\Controllers\ApplicationConrtoller::class, 'store']);
+Route::post('/filter-app', [\App\Http\Controllers\Backend\ApplicationConrtoller::class, 'sort']);

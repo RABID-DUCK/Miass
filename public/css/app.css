@@ -11992,3 +11992,20 @@ textarea.form-control-lg {
   background-color: #0a53be;
   color: white;
 }
+
+input:disabled, textarea:disabled {
+  cursor: not-allowed;
+}
+
+.filter {
+  border: 1px solid darkgray;
+  padding: 10px;
+  border-radius: 4px;
+}
+.filter span:nth-child(2) {
+  margin-left: 10px;
+  margin-right: 20px;
+}
+.filter span:hover {
+  cursor: pointer;
+}
